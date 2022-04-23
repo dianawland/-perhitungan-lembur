@@ -1,0 +1,632 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sistem Perhitungan Lembur",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/employees": {
+            "get": {
+                "tags": [
+                    "employees"
+                ],
+                "summary": "Returns a Sample API response",
+                "description": "A sample employees to test out the API",
+                "operationId": "employees",
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "list total data for one page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "number of page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "order_by",
+                        "in": "query",
+                        "description": "only can fill with 'name' or 'salary'",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "order_type",
+                        "in": "query",
+                        "description": "only can fill with 'ASC' or 'DESC'",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Achmad Zein Feroza"
+                                        },
+                                        "status_id": {
+                                            "type": "integer",
+                                            "example": "3"
+                                        },
+                                        "status": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Tetap"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "name": "Tetap"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "employees"
+                ],
+                "summary": "Returns a Sample API response",
+                "description": "A sample employees to test out the API",
+                "operationId": "employees-post",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "must be unique and min 2 character",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status_id",
+                        "in": "query",
+                        "description": "id of references, only can fill with 3,4",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "salary",
+                        "in": "query",
+                        "description": "only can fill between 2000000 - 10000000",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Data Berhasil Ditambahkan"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Achmad Zein Feroza"
+                                                    },
+                                                    "status_id": {
+                                                        "type": "integer",
+                                                        "example": "3"
+                                                    },
+                                                    "salary": {
+                                                        "type": "integer",
+                                                        "example": "2000000"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "name": "Achmad Zein Feroza",
+                                                    "status_id": "3",
+                                                    "salary": "2000000"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Data Tidak Berhasil Ditambahkan"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/overtimes": {
+            "get": {
+                "tags": [
+                    "overtimes"
+                ],
+                "summary": "Returns a Sample API response",
+                "description": "A sample overtimes to test out the API",
+                "operationId": "overtimes",
+                "parameters": [
+                    {
+                        "name": "date_started",
+                        "in": "query",
+                        "description": "date with format Y:m:d",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "date_ended",
+                        "in": "query",
+                        "description": "date with format Y:m:d",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Data Ditemukan"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "employee_id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "employee_name": {
+                                                        "type": "string",
+                                                        "example": "Achmad Zein Feroza"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2022-03-10"
+                                                    },
+                                                    "time_started": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "15:00"
+                                                    },
+                                                    "time_ended": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "19:00"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "employee_id": "1",
+                                                    "employee_name": "Achmad Zein Feroza",
+                                                    "date": "2022-03-10",
+                                                    "time_started": "15:00",
+                                                    "time_ended": "19:00"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Data Tidak Ditemukan"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "overtimes"
+                ],
+                "summary": "Returns a Sample API response",
+                "description": "A sample overtimes to test out the API",
+                "operationId": "overtimes-post",
+                "parameters": [
+                    {
+                        "name": "employee_id",
+                        "in": "query",
+                        "description": "id of employee",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "date with format Y:m:d",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "time_started",
+                        "in": "query",
+                        "description": "time with format HH:mm",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "time_ended",
+                        "in": "query",
+                        "description": "time with format HH:mm",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Data Berhasil Ditambahkan"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "employee_id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2022-03-10"
+                                                    },
+                                                    "time_started": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "15:00"
+                                                    },
+                                                    "time_ended": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "19:00"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": "1",
+                                                    "employee_id": "1",
+                                                    "date": "2022-03-10",
+                                                    "time_started": "15:00",
+                                                    "time_ended": "19:00"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Data Tidak Berhasil Ditambahkan"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/overtime-pays/calculate": {
+            "get": {
+                "tags": [
+                    "overtimes-pays"
+                ],
+                "summary": "Returns a Sample API response",
+                "description": "A sample overtimes to test out the API",
+                "operationId": "overtimes-pays",
+                "parameters": [
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "date with format Y:m",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Achmad Zein Feroza"
+                                        },
+                                        "status_id": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Achmad Zein Feroza"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "name": "Achmad Zein Feroza"
+                                                }
+                                            ]
+                                        },
+                                        "salary": {
+                                            "type": "integer",
+                                            "example": "2000000"
+                                        },
+                                        "overtime": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2022-03-10"
+                                                    },
+                                                    "time_started": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "15:00"
+                                                    },
+                                                    "time_ended": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "19:00"
+                                                    },
+                                                    "time_hours": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "4"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": "1",
+                                                    "date": "2022-03-10",
+                                                    "time_started": "15:00",
+                                                    "time_ended": "19:00",
+                                                    "time_hours": "4"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Data Tidak Ditemukan"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/settings": {
+            "patch": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Returns a Sample API response",
+                "description": "A sample settings to test out the API",
+                "operationId": "settings",
+                "parameters": [
+                    {
+                        "name": "value",
+                        "in": "query",
+                        "description": "id of references",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "Hanya Bisa diisi overtime_methode",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Data Setting Berhasil Diubah"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "key": {
+                                                        "type": "string",
+                                                        "example": "overtime_method"
+                                                    },
+                                                    "value": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "key": "overthime_method",
+                                                    "value": "1"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "Data Setting Tidak Berhasil Diubah"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
